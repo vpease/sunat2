@@ -19,7 +19,7 @@ class Master {
             CodigoHash:'',
             Data: {                
                 RazonSocial: "",
-                Direccion: "",
+                Direcion: "",
                 Ruc: "",
                 CondDomicilio:"",                
                 EstadoContr:"",
@@ -58,7 +58,7 @@ class Master {
             CodigoHash:'',
             Data: {                
                 RazonSocial: "",
-                Direccion: "",
+                Direcion: "",
                 Ruc: "",
                 CondDomicilio:"",                
                 EstadoContr:"",
@@ -81,7 +81,7 @@ class Master {
             resp.Data.Ruc= row.RUC.toString();
             resp.Data.RazonSocial=row.NOMBRE;
             resp.Data.Departamento = row.DEPARTAMENTO;
-            resp.Data.Direccion = row.TIPOVIA +' '+ row.NOMBREVIA+ ' '+row.NUMERO +' '+ row.ZONA + ' ' + row.TIPOZONA;
+            resp.Data.Direcion = row.TIPOVIA +' '+ row.NOMBREVIA+ ' '+row.NUMERO +' '+ row.ZONA + ' ' + row.TIPOZONA;
             resp.Data.EstadoContr = row.ESTADO;
             resp.Data.Departamento = (row.DEPARTAMENTO == null ? '-': row.DEPARTAMENTO);
             resp.Data.Provincia = (row.PROVINCIA == null ? '-': row.PROVINCIA);

@@ -18,9 +18,10 @@ class Master {
             Pila: '',
             CodigoHash:'',
             Data: {
+                Ruc: "",
                 RazonSocial: "",
                 Direccion: "",
-                Ruc: "",
+                CondDomicilio:"",                
                 EstadoContr:"",
                 TipoContr:"",
                 SistemaEmisionComprobante: "",
@@ -55,9 +56,10 @@ class Master {
             Pila: '',
             CodigoHash:'',
             Data: {
+                Ruc: "",
                 RazonSocial: "",
                 Direccion: "",
-                Ruc: "",
+                CondDomicilio:"",                
                 EstadoContr:"",
                 TipoContr:"",
                 SistemaEmisionComprobante: "",
@@ -79,8 +81,12 @@ class Master {
             resp.Data.Departamento = row.DEPARTAMENTO;
             resp.Data.Direccion = row.TIPOVIA +' '+ row.NOMBREVIA+ ' '+row.NUMERO +' '+ row.ZONA + ' ' + row.TIPOZONA;
             resp.Data.EstadoContr = row.ESTADO;
-            resp.Data.Departamento = row.DEPARTAMENTO;
-        } 
+            resp.Data.Departamento = row.DEPARTAMENTO;            
+            resp.Data.CondDomicilio = row.CONDDOMI;
+        } else {
+            resp.Exito=false;
+            resp.Mensaje='Ruc no existe';            
+        }
         return Promise.resolve(resp);
     }
     getMod11(datos){

@@ -15,7 +15,7 @@ router.get('/', function(req, res, next) {
 router.post("/wsuper/Consulta/Sunat", function (req, res, next) {  
   console.log('Recibido el post : ' + JSON.stringify(req.query));  
   const consulta = req.query.request;  
-  control.consultar(consulta)
+  control.consultar(consulta.trim())
     .then(resp => {
       res.send(resp);
     })

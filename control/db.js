@@ -13,7 +13,7 @@ class Db {
           });
     }
     async get(pDoc){
-        let sql = `SELECT * FROM padron where RUC=?`;
+        let sql = `SELECT * FROM consulta where RUC=?`;
         if (!this.db) {
             await this.openDb();
         }

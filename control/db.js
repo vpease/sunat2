@@ -7,7 +7,7 @@ class Db {
     }
     async openDb() {
         this.db = await sqlite.open({
-            filename: './data/sunat.db',
+            filename: './data/sunatv2.db',
             driver: sqlite3.Database,
             mode: sqlite3.OPEN_READONLY
           });

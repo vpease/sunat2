@@ -12,8 +12,7 @@ class Master {
         this.archivo =pDatos;
         this.modelo = pModel;
         this.separador= pSeparador;
-
-        this.datos = {
+        this.datos =  {
             Exito: true,
             Mensaje: "",
             Pila: '',
@@ -36,18 +35,67 @@ class Master {
                     }
                 ]
             }
-        };        
+        };      
     }     
     async consultar(pConsulta) {
         this.bd = new Db(this.archivo);
         console.log("Inicio: " + pConsulta + ' ' + new Date());
-        var row = await this.bd.get(pConsulta);
-        this.datos.Data.Ruc= row.RUC;
-        this.datos.Data.RazonSocial=row.NOMBRE;
-        this.datos.Data.Departamento = row.DEPARTAMENTO;
-        this.datos.Data.
-        console.log(this.datos);
-        return Promise.resolve(this.datos);
+        let ruc='';
+        if (pConsulta.length==8) {
+            ruc = '10'.concat(pConsulta);
+            const mod = this.getMod11(ruc);
+            ruc = ruc.concat(mod);
+        } else {
+            ruc = pConsulta;
+        }
+        var row = await this.bd.get(ruc);
+        var resp = {
+            Exito: true,
+            Mensaje: "",
+            Pila: '',
+            CodigoHash:'',
+            Data: {
+                RazonSocial: "",
+                Direccion: "",
+                Ruc: "",
+                EstadoContr:"",
+                TipoContr:"",
+                SistemaEmisionComprobante: "",
+                Departamento: "",
+                Provincia: "",
+                Distrito: "",
+                Actividades: [
+                    {
+                        id:0,
+                        CIIU:'',
+                        actividad:''
+                    }
+                ]
+            }
+        };
+        if (row){
+            resp.Data.Ruc= row.RUC;
+            resp.Data.RazonSocial=row.NOMBRE;
+            resp.Data.Departamento = row.DEPARTAMENTO;
+            resp.Data.Direccion = row.TIPOVIA +' '+ row.NOMBREVIA+ ' '+row.NUMERO +' '+ row.ZONA + ' ' + row.TIPOZONA;
+            resp.Data.EstadoContr = row.ESTADO;
+            resp.Data.Departamento = row.DEPARTAMENTO;
+        } 
+        return Promise.resolve(resp);
+    }
+    getMod11(datos){
+        let modN = 11;
+        var calc, i, checksum = 0, // running checksum total
+        j = [5,4,3,2,7,6,5,4,3,2]; // toma el valor 1 o 2
+        
+        // Procesa cada digito comenzando por la derecha
+        for (i = datos.length - 1; i >= 0; i -= 1) {
+            // Extrae el siguiente digito y multiplica por 1 o 2 en digitos alternativos
+            calc = Number(datos.charAt(i)) * j[i];
+            checksum = checksum + calc;            
+        }
+        var mod = checksum % modN;        
+        return (modN - mod);
     }
 }
 module.exports = Master;

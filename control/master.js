@@ -17,10 +17,10 @@ class Master {
             Mensaje: "",
             Pila: '',
             CodigoHash:'',
-            Data: {
-                Ruc: "",
+            Data: {                
                 RazonSocial: "",
                 Direccion: "",
+                Ruc: "",
                 CondDomicilio:"",                
                 EstadoContr:"",
                 TipoContr:"",
@@ -56,10 +56,10 @@ class Master {
             Mensaje: "",
             Pila: '',
             CodigoHash:'',
-            Data: {
-                Ruc: "",
+            Data: {                
                 RazonSocial: "",
                 Direccion: "",
+                Ruc: "",
                 CondDomicilio:"",                
                 EstadoContr:"",
                 TipoContr:"",
@@ -78,7 +78,7 @@ class Master {
             }
         };
         if (row){
-            resp.Data.Ruc= row.RUC;
+            resp.Data.Ruc= row.RUC.toString();
             resp.Data.RazonSocial=row.NOMBRE;
             resp.Data.Departamento = row.DEPARTAMENTO;
             resp.Data.Direccion = row.TIPOVIA +' '+ row.NOMBREVIA+ ' '+row.NUMERO +' '+ row.ZONA + ' ' + row.TIPOZONA;

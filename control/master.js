@@ -80,7 +80,18 @@ class Master {
         if (row){
             resp.Data.Ruc= row.RUC.toString();
             resp.Data.RazonSocial=row.NOMBRE;            
-            resp.Data.Direcion = row.TIPOVIA +' '+ row.NOMBREVIA+ ' '+row.NUMERO +' '+ row.ZONA + ' ' + row.TIPOZONA;
+            resp.Data.Direcion =
+                this.mostrar('',row.TIPOVIA)
+                +' ' + this.mostrar('',row.NOMBREVIA)
+                +' ' + this.mostrar('NRO. ',row.NUMERO)
+                +' ' + this.mostrar('INT. ',row.INTERIOR)
+                +' ' +this.mostrar('MZA. ',row.MANZANA) 
+                +' ' + this.mostrar('LOTE. ',row.LOTE)
+                +' ' + this.mostrar('',row.ZONA)
+                +' ' + this.mostrar('',row.TIPOZONA)                 
+                +' ' + this.mostrar('',row.DEPARTAMENTO)
+                +' - ' + this.mostrar('',row.PROVINCIA)
+                +' - ' + this.mostrar('',row.DISTRITO);
             resp.Data.EstadoContr = row.ESTADO;
             resp.Data.Departamento = (row.DEPARTAMENTO == null ? '-': row.DEPARTAMENTO.toUpperCase());
             resp.Data.Provincia = (row.PROVINCIA == null ? '-': row.PROVINCIA.toUpperCase());
@@ -92,6 +103,13 @@ class Master {
             resp.Mensaje='Ruc no existe';            
         }
         return Promise.resolve(resp);
+    }
+    mostrar(pTitulo,pValor){
+        if (pValor != '-' && pValor != '----'){
+            return pTitulo+ pValor.toUpperCase();
+        } else{
+            return '';
+        }
     }
     getMod11(datos){
         let modN = 11;

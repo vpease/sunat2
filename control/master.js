@@ -79,13 +79,12 @@ class Master {
         };
         if (row){
             resp.Data.Ruc= row.RUC.toString();
-            resp.Data.RazonSocial=row.NOMBRE;
-            resp.Data.Departamento = row.DEPARTAMENTO;
+            resp.Data.RazonSocial=row.NOMBRE;            
             resp.Data.Direcion = row.TIPOVIA +' '+ row.NOMBREVIA+ ' '+row.NUMERO +' '+ row.ZONA + ' ' + row.TIPOZONA;
             resp.Data.EstadoContr = row.ESTADO;
-            resp.Data.Departamento = (row.DEPARTAMENTO == null ? '-': row.DEPARTAMENTO);
-            resp.Data.Provincia = (row.PROVINCIA == null ? '-': row.PROVINCIA);
-            resp.Data.Distrito = (row.DISTRITO == null ? '-': row.DISTRITO);
+            resp.Data.Departamento = (row.DEPARTAMENTO == null ? '-': row.DEPARTAMENTO.toUpperCase());
+            resp.Data.Provincia = (row.PROVINCIA == null ? '-': row.PROVINCIA.toUpperCase());
+            resp.Data.Distrito = (row.DISTRITO == null ? '-': row.DISTRITO.toUpperCase());
             resp.Data.Ubigeo = row.UBIGEO;
             resp.Data.CondDomicilio = row.CONDDOMI;
         } else {

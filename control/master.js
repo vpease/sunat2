@@ -1,5 +1,4 @@
-const { RSA_NO_PADDING } = require('constants');
-const crawler = require('./crawler');
+
 const Db = require('./db');
 
 var homeUrl = 'https://e-consultaruc.sunat.gob.pe/cl-ti-itmrconsruc/';

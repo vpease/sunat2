@@ -88,9 +88,9 @@ class Master {
                 +' ' + this.mostrar('LOTE. ',row.LOTE)
                 +' ' + this.mostrar('',row.ZONA)
                 +' ' + this.mostrar('',row.TIPOZONA)                 
-                +' ' + this.mostrar('',row.DEPARTAMENTO)
-                +' - ' + this.mostrar('',row.PROVINCIA)
-                +' - ' + this.mostrar('',row.DISTRITO);
+                +' ' + this.mostrar('',(row.DEPARTAMENTO == null ? '-': row.DEPARTAMENTO.toUpperCase()))
+                +' - ' + this.mostrar('',(row.PROVINCIA == null ? '-': row.PROVINCIA.toUpperCase()))
+                +' - ' + this.mostrar('',(row.DISTRITO == null ? '-': row.DISTRITO.toUpperCase()));
             resp.Data.EstadoContr = row.ESTADO;
             resp.Data.Departamento = (row.DEPARTAMENTO == null ? '-': row.DEPARTAMENTO.toUpperCase());
             resp.Data.Provincia = (row.PROVINCIA == null ? '-': row.PROVINCIA.toUpperCase());
@@ -105,7 +105,7 @@ class Master {
     }
     mostrar(pTitulo,pValor){
         if (pValor != '-' && pValor != '----'){
-            return pTitulo+ pValor.toUpperCase();
+            return pTitulo+ pValor == null ? '-': pValor.toUpperCase();
         } else{
             return '';
         }
